@@ -8,7 +8,7 @@ include "./server/queries.php";
     <head>
         <meta charset="utf-8">
         <title>ReSoC - Flux</title>         
-        <meta name="author" content="Julien Falconnet">
+        <meta name="author" content="nicotine189">
         <link rel="stylesheet" href="./client/css/style.css"/>
     </head>
     <body>
@@ -25,8 +25,8 @@ include "./server/queries.php";
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice <?php echo $user['alias'] ?>
-                        (n° <?php echo $userId ?>)
+                        auxquel est abonnée l'utilisatrice <?php echo '<a href="wall.php?user_id=' . $userId . '">' . $user['alias'] . '</a>'; ?>
+                        (n° <?php echo $userId; ?>)
                     </p>
 
                 </section>
@@ -47,9 +47,11 @@ include "./server/queries.php";
                     <h3>
                         <time datetime='2020-02-01 11:12:13' ><?php echo $feeds['created'] ?></time>
                     </h3>
-                    <address>par <?php echo $feeds['author_name'] ?></address>
+                    <address>par <?php echo '<a href="wall.php?user_id=' . $feeds['author_id'] . '">' . $feeds['author_name'] . '</a>'; ?></address>
                     <div>
                         <p><?php echo $feeds['content'] ?></p>
+
+
                     </div>                                            
                     <footer>
                         <small>♥ <?php echo $feeds['like_number'] ?></small>

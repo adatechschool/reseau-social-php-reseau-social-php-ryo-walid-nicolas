@@ -7,7 +7,7 @@ $SQL_50_First_Users = "SELECT * FROM `users` LIMIT 50";
 $SQL_getUserFromId = "SELECT * FROM `users` WHERE id= '$userId' ";
 
 $SQL_Get_Subscribed_Posts = "
-    SELECT posts.content,
+    SELECT users.id as author_id, posts.content,
     posts.created,
     users.alias as author_name,  
     count(likes.id) as like_number,  
@@ -32,7 +32,7 @@ $SQL_followers = "
     ";
 
 $SQL_news = "
-    SELECT posts.content,
+    SELECT users.id as author_id, posts.content,
     posts.created,
     users.alias as author_name,  
     count(likes.id) as like_number,  
@@ -48,7 +48,7 @@ $SQL_news = "
     ";
 
 $SQL_wall = "
-    SELECT posts.content, posts.created, users.alias as author_name, 
+    SELECT users.id as author_id, posts.content, posts.created, users.alias as author_name, 
     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
     FROM posts
     JOIN users ON  users.id=posts.user_id
@@ -60,7 +60,7 @@ $SQL_wall = "
     ORDER BY posts.created DESC  
     ";
 $SQL_tags = "
-    SELECT posts.content,
+    SELECT users.id as author_id, posts.content,
     posts.created,
     users.alias as author_name,  
     count(likes.id) as like_number,  
