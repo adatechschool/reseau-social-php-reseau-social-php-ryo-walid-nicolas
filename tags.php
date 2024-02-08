@@ -54,7 +54,7 @@ include "./server/queries.php";
                         <h3>
                             <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
                         </h3>
-                        <address>par <?php echo $post['author_name'] ?></address>
+                        <address>par <?php echo '<a href="wall.php?user_id=' . $post['author_id'] . '">' . $post['author_name'] . '</a>'; ?></address>
                         <div>
                             <p><?php echo $post['content'] ?></p>
                         </div>                                            

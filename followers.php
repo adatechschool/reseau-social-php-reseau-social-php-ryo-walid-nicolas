@@ -35,8 +35,8 @@ include "./server/queries.php";
                 ?>
                 <article>
                     <img src="./client/img/user.jpg" alt="blason"/>
-                    <h3><?php echo $followers['alias'] ?></h3>
-                    <p>id:<?php echo $followers['id'] ?></p>
+                    <h3><?php echo '<a href="wall.php?user_id=' . $followers['id'] . '">' . $followers['alias'] . '</a>'; ?></h3>
+                    <p>id:<?php echo '<a href="wall.php?user_id=' . $followers['id'] . '">' . $followers['id'] . '</a>'; ?></p>
                 </article>
                 <?php
                 }
