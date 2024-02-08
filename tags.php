@@ -48,7 +48,7 @@ include "./server/queries.php";
                 while ($post = $lesInformations->fetch_assoc())
                 {
 
-                    // echo "<pre>" . print_r($post, 1) . "</pre>";
+                    //echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>                
                     <article>
                         <h3>
@@ -60,7 +60,7 @@ include "./server/queries.php";
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>
+                            <?php echo '<a href="tags.php?tag_id=' . $post['tag_id'] . '">'?>#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>
