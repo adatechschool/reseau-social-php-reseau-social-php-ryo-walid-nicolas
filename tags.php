@@ -48,13 +48,13 @@ include "./server/queries.php";
                 
                 while ($post = $lesInformations->fetch_assoc())
                 {
-                    
+                    //  ## tentative pour ajout du split sur les tags
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
                     // Split the taglist string into an array using the comma as a delimiter
-                    $tags = explode(',', $post['taglist']);
+                    // $tags = explode(',', $post['taglist']);
     
                     // Now $tags is an array of individual tags
-                    echo print_r($tags);
+                    // echo print_r($tags);
 
                     ?>                
                     <article>
@@ -67,11 +67,7 @@ include "./server/queries.php";
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <?php while ($post = $lesInformations->fetch_assoc())
-                {?>
-                            <a <?php echo '<a href="tags.php?tag_id=' . $post['tag_id'] . '"'?>>#<?php echo $post['taglist'] ?></a>
-
-                            <?php } ?>
+                            <?php echo '<a href="tags.php?tag_id=' . $post['tag_id'] . '">'?>#<?php echo $post['taglist'] ?></a>
                         </footer>
                     </article>
                 <?php } ?>
