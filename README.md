@@ -9,6 +9,6 @@ Nicolas, Ryo, Walid
 
 deux nouveau fichiers ajouter, queries.php (regroupment des requettes mySQL) et connect_db.php (connections de database et fonctions control php)
 
-8/02/2024 mobprogramming , review du code, ajout de fonctionalité (activation des liens sur les tags), commence à faire niveau 2
+8/02/2024 mobprogramming , review du code, ajout de fonctionalité (activation des liens sur les tags), commence à faire niveau 2, changement des bases d'inscription pour que la fonctionalité marche
 
 9/02/2024 padding
