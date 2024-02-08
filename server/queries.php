@@ -60,7 +60,7 @@ $SQL_wall = "
     ORDER BY posts.created DESC  
     ";
 $SQL_tags = "
-    SELECT users.id as author_id, posts.content,
+    SELECT tags.id as tag_id, users.id as author_id, posts.content,
     posts.created,
     users.alias as author_name,  
     count(likes.id) as like_number,  

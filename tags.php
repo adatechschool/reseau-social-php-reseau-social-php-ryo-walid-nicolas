@@ -45,10 +45,17 @@ include "./server/queries.php";
                     echo("Échec de la requete : " . $mysqli->error);
                 }
 
+                
                 while ($post = $lesInformations->fetch_assoc())
                 {
-
+                    
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
+                    // Split the taglist string into an array using the comma as a delimiter
+                    $tags = explode(',', $post['taglist']);
+    
+                    // Now $tags is an array of individual tags
+                    echo print_r($tags);
+
                     ?>                
                     <article>
                         <h3>
@@ -60,7 +67,11 @@ include "./server/queries.php";
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>
+                            <?php while ($post = $lesInformations->fetch_assoc())
+                {?>
+                            <a <?php echo '<a href="tags.php?tag_id=' . $post['tag_id'] . '"'?>>#<?php echo $post['taglist'] ?></a>
+
+                            <?php } ?>
                         </footer>
                     </article>
                 <?php } ?>
