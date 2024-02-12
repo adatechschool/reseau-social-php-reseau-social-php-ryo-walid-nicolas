@@ -1,6 +1,9 @@
-<?php
-session_start();
+<?php 
+include "./server/db_connect.php";
+include "./server/queries.php";
+include "./server/session_management.php"
 ?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -23,10 +26,6 @@ session_start();
                 <article>
                     <h2>Poster un message</h2>
                     <?php
-                    /**
-                     * BD
-                     */
-                    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork_tests");
                     /**
                      * Récupération de la liste des auteurs
                      */

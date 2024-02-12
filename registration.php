@@ -27,28 +27,23 @@ include "./server/queries.php";
                     /**
                      * TRAITEMENT DU FORMULAIRE
                      */
-                    // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
-                    // si on recoit un champs email rempli il y a une chance que ce soit un traitement
+                    // Vérifier si les champs sont renseignés
                     $enCoursDeTraitement = isset($_POST['email']);
                     if ($enCoursDeTraitement)
                     {
-                        // on ne fait ce qui suit que si un formulaire a été soumis.
-                        // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
-                        // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
-                        echo "<pre>" . print_r($_POST, 1) . "</pre>";
-                        // et complétez le code ci dessous en remplaçant les ???
+                        // echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                        // récupère les champs du formulaire
                         $new_email = $_POST['email'];
                         $new_alias = $_POST['pseudo'];
                         $new_passwd = $_POST['motpasse'];
-
-                        //Etape 4 : Petite sécurité
-                        // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
+                        // Protection contre les injections SQL (échappe les caratères spéciaux)
                         $new_email = $mysqli->real_escape_string($new_email);
                         $new_alias = $mysqli->real_escape_string($new_alias);
                         $new_passwd = $mysqli->real_escape_string($new_passwd);
-                        // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
+                        
+                        // Hachage du password
                         $new_passwd = md5($new_passwd);
-                        // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
+
                         //Etape 5 : construction de la requete
                         $lInstructionSql = "INSERT INTO users (id, email, password, alias) "
                                 . "VALUES (NULL, "
@@ -68,15 +63,16 @@ include "./server/queries.php";
                         }
                     }
                     ?>                     
+                    <!-- Ajouter CSRF token pour authentification du site -->
                     <form action="registration.php" method="post">
                         <input type='hidden'name='???' value='achanger'>
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
-                            <dd><input type='text'name='pseudo'></dd>
+                            <dd><input type='text'name='pseudo' placeholder="pseudo" required></dd>
                             <dt><label for='email'>E-Mail</label></dt>
-                            <dd><input type='email'name='email'></dd>
+                            <dd><input type='email'name='email' placeholder="example@example.com" required></dd>
                             <dt><label for='motpasse'>Mot de passe</label></dt>
-                            <dd><input type='password'name='motpasse'></dd>
+                            <dd><input type='password'name='motpasse' placeholder="mot de passe" required></dd>
                         </dl>
                         <input type='submit'>
                     </form>
