@@ -12,3 +12,5 @@ deux nouveau fichiers ajouter, queries.php (regroupment des requettes mySQL) et 
 8/02/2024 mobprogramming , review du code, ajout de fonctionalité (activation des liens sur les tags), commence à faire niveau 2, changement des bases d'inscription pour que la fonctionalité marche
 
 9/02/2024 padding
+
+2/12/2024 ajout dun formulaire abonnement et messagerie dans wall.php, ajout fonctions pour le mot de passe, hachage dans registration.php ainsi changement du code pour gérer des formulaires. Petits changements de css , font-style et couleur.
