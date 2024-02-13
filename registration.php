@@ -65,6 +65,8 @@ include "./server/queries.php";
                     ?>                     
                     <!-- Ajouter CSRF token pour authentification du site -->
                     <form action="registration.php" method="post">
+
+                    
                         <input type='hidden'name='???' value='achanger'>
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
