@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "./server/db_connect.php";
 include "./server/queries.php";
 include "./server/session_management.php"
@@ -28,7 +28,7 @@ include "./server/session_management.php"
             <article>
                 <h2>Inscription</h2>
                 <?php
-                // echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
                 function handleFormSubmission($mysqli)
                 {
@@ -58,6 +58,13 @@ include "./server/session_management.php"
                         $stmt->close();
                     }
                 }
+
+                if (isset($mysqli)) {
+                    handleFormSubmission($mysqli);
+                } else {
+                    echo "Database connection failed.";
+                }
+                
                 ?>
                 <!-- Ajouter CSRF token pour authentification du site -->
                 <form action="registration.php" method="post">
