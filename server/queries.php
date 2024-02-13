@@ -94,5 +94,10 @@ $SQL_settings = "
     WHERE users.id = '$userId' 
     GROUP BY users.id
     ";
+    
+$SQL_add_post = "INSERT INTO posts
+    (id, user_id, content, created, parent_id)
+    VALUES (NULL, $authorId, '$postContent', NOW(), NULL)";
+
 
 ?>
