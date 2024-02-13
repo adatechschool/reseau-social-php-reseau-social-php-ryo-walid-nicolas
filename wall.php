@@ -27,6 +27,28 @@ include "./server/session_management.php";
             </form>
 
             <!-- Partie sql pour sauvegarder les suivis  -->
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['follow_user'])) {
+                // Check if the user is logged in
+                if (isset($_SESSION['user_id'])) {
+                    $follower_id = $_SESSION['user_id'];
+                    $user_id = $userId; // Assuming $userId is set somewhere
+                    // Save subscription data to the database
+                    $query = "INSERT INTO subscriptions (follower_id, user_id) VALUES ('$follower_id', '$user_id')";
+                    $result = $mysqli->query($query);
+                    if (!$result) {
+                        echo "Error: " . $mysqli->error;
+                    }
+                } else {
+                    // Redirect or handle non-logged in users
+                    // For example: header("Location: login.php");
+                    echo "please log in";
+                    header("Location: login.php");
+                    exit;
+                }
+            }
+            ?>
+
 
             <?php
             $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
