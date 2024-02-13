@@ -26,7 +26,7 @@ include "./server/queries.php";
             <article>
                 <h2>Inscription</h2>
                 <?php
-                echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                // echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
                 function handleFormSubmission($mysqli)
                 {
