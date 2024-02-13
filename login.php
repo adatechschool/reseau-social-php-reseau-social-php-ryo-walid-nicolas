@@ -27,10 +27,10 @@ include "./server/session_management.php"
             <article>
                 <h2>Connexion</h2>
                 <?php
- 
-                    // Formulaire de login
-                    $enCoursDeTraitement = isset($_POST['email']);
-                    if ($enCoursDeTraitement) {
+
+                // Formulaire de login
+                $enCoursDeTraitement = isset($_POST['email']);
+                if ($enCoursDeTraitement) {
 
                     // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                     $emailAVerifier = $_POST['email'];

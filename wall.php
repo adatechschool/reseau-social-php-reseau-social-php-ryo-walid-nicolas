@@ -1,7 +1,9 @@
 <?php 
 include "./server/db_connect.php";
 include "./server/queries.php";
+include "./server/session_management.php"
 ?>
+
 
 <!doctype html>
 <html lang="fr">
