@@ -4,6 +4,7 @@ include "./server/queries.php";
 include "./server/session_management.php";
 ?>
 
+
 <!doctype html>
 <html lang="fr">
 

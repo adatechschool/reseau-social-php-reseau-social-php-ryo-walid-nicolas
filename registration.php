@@ -1,7 +1,9 @@
 <?php
 include "./server/db_connect.php";
 include "./server/queries.php";
+include "./server/session_management.php"
 ?>
+
 
 <!doctype html>
 <html lang="fr">
@@ -56,6 +58,13 @@ include "./server/queries.php";
                         $stmt->close();
                     }
                 }
+
+                if (isset($mysqli)) {
+                    handleFormSubmission($mysqli);
+                } else {
+                    echo "Database connection failed.";
+                }
+                
                 ?>
                 <!-- Ajouter CSRF token pour authentification du site -->
                 <form action="registration.php" method="post">
