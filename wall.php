@@ -15,6 +15,12 @@ include "./server/queries.php";
         <?php include './client/header.php';?>
         <div id="wrapper">
             <aside>
+            <h2>Abonnement</h2>
+                <form action="subscribe.php" method="post">
+                    <label for="email">Adresse e-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                    <input type="submit" value="S'abonner">
+                </form>
                 <?php
                 $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -23,10 +29,17 @@ include "./server/queries.php";
                 ?>
                 <img src="./client/img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
+                <form action="add_message.php" method="post">
+    <h2>Ajouter un message</h2>
+    <label for="message_content">Contenu du message:</label><br>
+    <textarea id="message_content" name="message_content" rows="4" cols="50" required></textarea><br>
+    <input type="submit" value="Ajouter le message">
+</form>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
+                    
                 </section>
             </aside>
             <main>
