@@ -34,18 +34,17 @@ include "./server/session_management.php";
                     $follower_id = $_SESSION['user_id'];
                     $user_id = $userId; // Assuming $userId is set somewhere
                     // Save subscription data to the database
-                    $query = "INSERT INTO subscriptions (follower_id, user_id) VALUES ('$follower_id', '$user_id')";
-                    $result = $mysqli->query($query);
-                    if (!$result) {
-                        echo "Error: " . $mysqli->error;
-                    }
-                } else {
-                    // Redirect or handle non-logged in users
-                    // For example: header("Location: login.php");
-                    echo "please log in";
-                    header("Location: login.php");
-                    exit;
-                }
+                    $stmt = $mysqli->prepare("INSERT INTO subscriptions (follower_id, user_id) VALUES (?, ?)");
+    $stmt->bind_param("ii", $follower_id, $user_id);
+
+    if ($stmt->execute()) {
+        // Successful insertion
+    } else {
+        echo "Error: " . $mysqli->error;
+    }
+
+    $stmt->close();
+}
             }
             ?>
 
