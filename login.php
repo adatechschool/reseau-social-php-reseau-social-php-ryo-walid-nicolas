@@ -39,14 +39,18 @@ include "./server/session_management.php"
                     // Sécu pour injection SQL
                     $emailAVerifier = $mysqli->real_escape_string($emailAVerifier);
                     $passwdAVerifier = $mysqli->real_escape_string($passwdAVerifier);
-                    // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
-                    $passwdAVerifier = md5($passwdAVerifier);
+
+                    // Hashage du mot de passe selon la même méthode que lors de la registration 
+                    $options = ['cost' =>  12]; // Cost factor for bcrypt
+                    $hashed_password = password_hash($passwdAVerifier, PASSWORD_BCRYPT, $options);
+
                     // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
                     //Etape 5 : construction de la requete
                     $lInstructionSql = "SELECT * "
                         . "FROM users "
                         . "WHERE "
                         . "email LIKE '" . $emailAVerifier . "'";
+
                     // Etape 6: Vérification de l'utilisateur
                     $res = $mysqli->query($lInstructionSql);
                     $user = $res->fetch_assoc();
@@ -54,6 +58,7 @@ include "./server/session_management.php"
                         echo "La connexion a échouée. ";
                     } else {
                         echo "Votre connexion est un succès : " . $user['alias'] . ".";
+
                         // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                         // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                         $_SESSION['connected_id'] = $user['id'];

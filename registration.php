@@ -44,15 +44,26 @@ include "./server/session_management.php"
                         // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
                         $new_passwd = password_hash($new_passwd, PASSWORD_BCRYPT);
 
-                        // Prepare and execute the SQL statement using a prepared statement
-                        $stmt = $mysqli->prepare("INSERT INTO users (email, password, alias) VALUES (?, ?, ?)");
-                        $stmt->bind_param("sss", $new_email, $new_passwd, $new_alias);
+                        // Assuming $conn is your database connection
+                        $checkQuery = "SELECT COUNT(*) FROM users WHERE alias = ?";
+                        $stmt = $mysqli->prepare($checkQuery);
+                        $stmt->bind_param('s', $new_alias);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $count = $result->fetch_row()[0];
 
-                        if ($stmt->execute()) {
+                        if ($count ==  0) {
+                            // Proceed with the insertion because the alias is unique
+                            $insertQuery = "INSERT INTO users (email, password, alias) VALUES (?, ?, ?)";
+                            $stmt = $mysqli->prepare($insertQuery);
+                            $stmt->bind_param("sss", $new_email, $new_passwd, $new_alias);
+                            $stmt->execute();
                             echo "Votre inscription est un succès : " . $new_alias;
                             echo " <a href='login.php'>Connectez-vous.</a>";
+
                         } else {
-                            echo "L'inscription a échouée : " . $mysqli->error;
+                            // Handle the case where the alias is not unique
+                            echo "L'alias '{$new_alias}' est déjà utilisé.";
                         }
 
                         $stmt->close();
@@ -64,7 +75,7 @@ include "./server/session_management.php"
                 } else {
                     echo "Database connection failed.";
                 }
-                
+
                 ?>
                 <!-- Ajouter CSRF token pour authentification du site -->
                 <form action="registration.php" method="post">
