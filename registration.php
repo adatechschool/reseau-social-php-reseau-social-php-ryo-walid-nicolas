@@ -24,42 +24,33 @@ include "./server/queries.php";
                 <article>
                     <h2>Inscription</h2>
                     <?php
-                    /**
-                     * TRAITEMENT DU FORMULAIRE
-                     */
-                    // Vérifier si les champs sont renseignés
-                    $enCoursDeTraitement = isset($_POST['email']);
-                    if ($enCoursDeTraitement)
-                    {
-                        // echo "<pre>" . print_r($_POST, 1) . "</pre>";
-                        // récupère les champs du formulaire
-                        $new_email = $_POST['email'];
-                        $new_alias = $_POST['pseudo'];
-                        $new_passwd = $_POST['motpasse'];
-                        // Protection contre les injections SQL (échappe les caratères spéciaux)
-                        $new_email = $mysqli->real_escape_string($new_email);
-                        $new_alias = $mysqli->real_escape_string($new_alias);
-                        $new_passwd = $mysqli->real_escape_string($new_passwd);
-                        
-                        // Hachage du password
-                        $new_passwd = md5($new_passwd);
+                    echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                    
+                    function handleFormSubmission($mysqli) {
+                        if (isset($_POST['email'], $_POST['pseudo'], $_POST['motpasse'])) {
+                            $new_email = $_POST['email'];
+                            $new_alias = $_POST['pseudo'];
+                            $new_passwd = $_POST['motpasse'];
 
-                        //Etape 5 : construction de la requete
-                        $lInstructionSql = "INSERT INTO users (id, email, password, alias) "
-                                . "VALUES (NULL, "
-                                . "'" . $new_email . "', "
-                                . "'" . $new_passwd . "', "
-                                . "'" . $new_alias . "'"
-                                . ");";
-                        // Etape 6: exécution de la requete
-                        $ok = $mysqli->query($lInstructionSql);
-                        if ( ! $ok)
-                        {
-                            echo "L'inscription a échouée : " . $mysqli->error;
-                        } else
-                        {
-                            echo "Votre inscription est un succès : " . $new_alias;
-                            echo " <a href='login.php'>Connectez-vous.</a>";
+
+                            $new_email = $mysqli->real_escape_string($new_email);
+                            $new_alias = $mysqli->real_escape_string($new_alias);
+                            
+                            // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
+                            $new_passwd = password_hash($new_passwd, PASSWORD_BCRYPT);
+
+                            // Prepare and execute the SQL statement using a prepared statement
+        $stmt = $mysqli->prepare("INSERT INTO users (email, password, alias) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $new_email, $new_passwd, $new_alias);
+
+        if ($stmt->execute()) {
+            echo "Votre inscription est un succès : " . $new_alias;
+            echo " <a href='login.php'>Connectez-vous.</a>";
+        } else {
+            echo "L'inscription a échouée : " . $mysqli->error;
+        }
+
+        $stmt->close();
                         }
                     }
                     ?>                     

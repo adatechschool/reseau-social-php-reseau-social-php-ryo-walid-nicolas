@@ -10,6 +10,9 @@ include "./server/queries.php";
         <title>ReSoC - Administration</title> 
         <meta name="author" content="nicotine189">
         <link rel="stylesheet" href="./client/css/style.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
     </head>
     <body>
         <?php include './client/header.php';?>
