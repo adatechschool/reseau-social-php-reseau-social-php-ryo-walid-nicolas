@@ -52,9 +52,14 @@ include "./server/session_management.php"
                     $authorId = intval($mysqli->real_escape_string($authorId));
                     $postContent = $mysqli->real_escape_string($postContent);
 
+                    // requête SQL ajout post
+                    $lInstructionSql = "INSERT INTO posts
+                    (id, user_id, content, created, parent_id)
+                    VALUES (NULL, $authorId, '$postContent', NOW(), NULL)";
+
                     // echo $lInstructionSql;
                     // // Etape 5 : execution
-                    $ok = $mysqli->query($SQL_add_post);
+                    $ok = $mysqli->query($lInstructionSql);
                     if (!$ok) {
                         echo "Impossible d'ajouter le message: " . $mysqli->error;
                     } else {
