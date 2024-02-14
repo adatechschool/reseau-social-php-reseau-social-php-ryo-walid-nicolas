@@ -54,16 +54,26 @@ include "./server/session_management.php"
                     // Etape 6: Vérification de l'utilisateur
                     $res = $mysqli->query($lInstructionSql);
                     $user = $res->fetch_assoc();
-                    if (!$user or $user["password"] != $passwdAVerifier) {
-                        echo "La connexion a échouée. ";
-                    } else {
-                        echo "Votre connexion est un succès : " . $user['alias'] . ".";
 
-                        // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
-                        // documentation: https://www.php.net/manual/fr/session.examples.basic.php
-                        $_SESSION['connected_id'] = $user['id'];
+                    echo $hashed_password;
+                    echo $user["password"];
+                    // Verifying a password : utilisation de password_verify pour inclure l'option de salage
+                    if (password_verify($user["password"], $hashed_password)) {
+                        echo 'Connexion réussie!';
+                    } else {
+                        echo 'Mot de passe incorrect';
                     }
+
+                    // if (!$user or $user["password"] != $passwdAVerifier) {
+                    //     echo "La connexion a échouée. ";
+                    // } else {
+                    //     echo "Votre connexion est un succès : " . $user['alias'] . ".";
+
+                    // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
+                    // documentation: https://www.php.net/manual/fr/session.examples.basic.php
+                    $_SESSION['connected_id'] = $user['id'];
                 }
+
                 ?>
                 <form action="login.php" method="post">
                     <input type='hidden' name='???' value='achanger'>
