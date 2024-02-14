@@ -40,38 +40,25 @@ include "./server/session_management.php"
                     $emailAVerifier = $mysqli->real_escape_string($emailAVerifier);
                     $passwdAVerifier = $mysqli->real_escape_string($passwdAVerifier);
 
-                    // Hashage du mot de passe selon la même méthode que lors de la registration 
-                    $options = ['cost' =>  12]; // Cost factor for bcrypt
-                    $hashed_password = password_hash($passwdAVerifier, PASSWORD_BCRYPT, $options);
-
-                    // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
-                    //Etape 5 : construction de la requete
+                    // Requête pour récupérer le hash du profil
                     $lInstructionSql = "SELECT * "
                         . "FROM users "
                         . "WHERE "
                         . "email LIKE '" . $emailAVerifier . "'";
 
-                    // Etape 6: Vérification de l'utilisateur
+                    // Vérification de l'utilisateur
                     $res = $mysqli->query($lInstructionSql);
                     $user = $res->fetch_assoc();
+                    $userPassword = $user["password"];
 
-                    echo $hashed_password;
-                    echo $user["password"];
-                    // Verifying a password : utilisation de password_verify pour inclure l'option de salage
-                    if (password_verify($user["password"], $hashed_password)) {
-                        echo 'Connexion réussie!';
+                    // Verifying a password : utilisation de password_verify (pas besoin de hasher, la fonction hashe la mdp avant de le comparer)
+                    if (password_verify($passwdAVerifier, $userPassword)) {
+                        echo "Connexion successful";
                     } else {
-                        echo 'Mot de passe incorrect';
+                        echo 'commentaire TBC';
                     }
-
-                    // if (!$user or $user["password"] != $passwdAVerifier) {
-                    //     echo "La connexion a échouée. ";
-                    // } else {
-                    //     echo "Votre connexion est un succès : " . $user['alias'] . ".";
-
-                    // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
-                    // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                     $_SESSION['connected_id'] = $user['id'];
+                    echo $_SESSION['connected_id'];
                 }
 
                 ?>

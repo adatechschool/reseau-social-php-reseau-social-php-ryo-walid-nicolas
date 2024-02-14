@@ -32,7 +32,7 @@ include "./server/session_management.php";
                 ini_set('display_startup_errors',  1);
                 error_reporting(E_ALL);
 
-                echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                // echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
                 function handleFormSubmission($mysqli)
                 {
@@ -64,7 +64,6 @@ include "./server/session_management.php";
                             $stmt->execute();
                             echo "Votre inscription est un succès : " . $new_alias;
                             echo " <a href='login.php'>Connectez-vous.</a>";
-
                         } else {
                             // Handle the case where the alias is not unique
                             echo "L'alias '{$new_alias}' est déjà utilisé.";

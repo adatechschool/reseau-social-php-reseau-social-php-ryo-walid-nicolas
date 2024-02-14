@@ -27,7 +27,7 @@ include "./server/session_management.php";
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
                         auxquel est abonnée l'utilisatrice <?php echo '<a href="wall.php?user_id=' . $userId . '">' . $user['alias'] . '</a>'; ?>
-                        (n° <?php echo $userId; ?>)
+                        (n° <?php echo $_SESSION['connected_id']; ?>)
                     </p>
 
                 </section>
