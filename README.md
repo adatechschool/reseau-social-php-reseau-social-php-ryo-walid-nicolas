@@ -14,3 +14,5 @@ deux nouveau fichiers ajouter, queries.php (regroupment des requettes mySQL) et 
 9/02/2024 padding
 
 2/12/2024 ajout dun formulaire abonnement et messagerie dans wall.php, ajout fonctions pour le mot de passe, hachage dans registration.php ainsi changement du code pour gérer des formulaires. Petits changements de css , font-style et couleur.
+
+2/13/2024 ajout session_management pour gerer les sessions, finissions pour le wall, login, registration. Continue a traiter les bugs et a finir les fonctions. Fonctions pour abonnements, registration, log in, likes. 

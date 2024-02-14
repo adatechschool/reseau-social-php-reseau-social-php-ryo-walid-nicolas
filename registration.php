@@ -1,7 +1,7 @@
 <?php
 include "./server/db_connect.php";
 include "./server/queries.php";
-include "./server/session_management.php"
+include "./server/session_management.php";
 ?>
 
 
@@ -28,6 +28,10 @@ include "./server/session_management.php"
             <article>
                 <h2>Inscription</h2>
                 <?php
+                ini_set('display_errors',  1);
+                ini_set('display_startup_errors',  1);
+                error_reporting(E_ALL);
+
                 echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
                 function handleFormSubmission($mysqli)
