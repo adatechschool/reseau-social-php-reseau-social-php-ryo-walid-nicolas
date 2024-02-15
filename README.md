@@ -37,6 +37,8 @@ This project is a PHP-based social network. It aims to provide a platform for us
 
 - **2/14/2024:** Finalized login functionality --> successful identification (using the SESSION superglobal), password comparison. Worked on adding comments via profile, but without success at the moment.
 
+- **2/15/2024:** Final day to fix any issues: fixed the login page, and the messaging features found on the wall.php. Project was presented and retro was finialised. 
+
 ## Conclusion
 
 The project has progressed steadily, with key features implemented and bugs addressed. Future development will focus on enhancing user experience and addressing any remaining issues.
