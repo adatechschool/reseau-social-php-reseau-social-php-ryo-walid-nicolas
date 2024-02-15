@@ -7,7 +7,7 @@ if (!isset($_SESSION['CREATED'])) {
 } else if (time() - $_SESSION['CREATED'] >  3600) {
     // Session started more than an hour ago, destroy it and start a new one
     session_regenerate_id(true);    // change session ID for the current session and invalidate old session ID
-    $_SESSION = array();           // unset session variables
+    // $_SESSION = array();           // unset session variables
     $_SESSION['CREATED'] = time();  // reset creation time
 }
 
