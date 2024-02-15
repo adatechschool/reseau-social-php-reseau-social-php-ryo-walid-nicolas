@@ -1,20 +1,44 @@
-Réseau Social PHP
-Nicolas, Ryo, Walid
 
-5/02/2024 Installation et configuration environnemnt PHP , installation de XAMPP
+# Social Media Cats
 
-6/02/2024 configuration de XAMMP, comprendre les notions de PHP et mySQL
+This project is a PHP-based social network. It aims to provide a platform for users to connect, share content, and interact with each other.
 
-7/02/2024 commence a faire du refactoring (réorganisation des fichiers, supressions de doublons de code) du code, les fichiers Niveau 1
 
-deux nouveau fichiers ajouter, queries.php (regroupment des requettes mySQL) et connect_db.php (connections de database et fonctions control php)
 
-8/02/2024 mobprogramming , review du code, ajout de fonctionalité (activation des liens sur les tags), commence à faire niveau 2, changement des bases d'inscription pour que la fonctionalité marche
 
-9/02/2024 padding
+## Authors
 
-2/12/2024 ajout dun formulaire abonnement et messagerie dans wall.php, ajout fonctions pour le mot de passe, hachage dans registration.php ainsi changement du code pour gérer des formulaires. Petits changements de css , font-style et couleur.
+- [@nicotine189](https://www.github.com/nicotine189)
+- [@ryorafael](https://www.github.com/ryorafael)
 
-2/13/2024 ajout session_management pour gerer les sessions, finissions pour le wall, login, registration. Continue a traiter les bugs et a finir les fonctions. Fonctions pour abonnements, registration, log in, likes. 
 
-2/14/2024 finalisation de la fonctionnalité du login --> ok sur l'identification (et utilisation de la superglobale SESSION) la comparaison du mot de passe , travail sur l'ajout des commentaires via le profil, mais sans succès pour le moment
+
+## Tech Stack
+
+**Client:** Html, CSS
+
+**Server:** Php, MySQL
+
+## Timeline
+
+- **5/02/2024:** Installation and configuration of PHP environment, XAMPP installation.
+  
+- **6/02/2024:** XAMPP configuration, understanding PHP and MySQL concepts.
+  
+- **7/02/2024:** Started refactoring code, organizing files, removing code duplicates. Created two new files: `queries.php` (MySQL query grouping) and `connect_db.php` (database connections and PHP control functions).
+  
+- **8/02/2024:** Mob programming session, code review, added functionality (link activation on tags), started working on level 2, changed registration bases to make the functionality work.
+  
+- **9/02/2024:** Padding.
+
+- **2/12/2024:** Added subscription and messaging form in `wall.php`, added password functions, hashing in `registration.php`, and changed code to manage forms. Minor CSS changes, font-style, and color.
+  
+- **2/13/2024:** Added session management to handle sessions, finished work on wall, login, registration. Continuing to address bugs and finish functions. Functions for subscriptions, registration, login, and likes.
+
+- **2/14/2024:** Finalized login functionality --> successful identification (using the SESSION superglobal), password comparison. Worked on adding comments via profile, but without success at the moment.
+
+## Conclusion
+
+The project has progressed steadily, with key features implemented and bugs addressed. Future development will focus on enhancing user experience and addressing any remaining issues.
+
+
